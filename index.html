@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sayang</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+        /* Common styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pacifico', cursive;
+            background-color: rgba(103, 58, 183, 0.7);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        /* Page 1 - Main Page */
+        #page1 {
+            flex-direction: column;
+        }
+
+        #page1 h1 {
+            font-size: 3.5em;
+            color: #e278f0;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .yes-button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .no-button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .gif_container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Page 2 - Yes Page */
+        #page2 .header_text {
+            font-size: 5em;
+            color: #e278f0;
+        }
+
+        #page2 .gif_container img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .surprise-button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #e278f0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Page 3 - Surprise Page */
+        #page3 {
+            background: url(https://subtlepatterns.com/patterns/noise_lines.png);
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .bgoverlay {
+            background: rgba(103, 58, 183, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        #page3 .container {
+            position: relative;
+            margin: 320px auto 0 auto;
+            width: 320px;
+            z-index: 20;
+        }
+
+        .ico {
+            display: block;
+            width: 320px;
+            height: 320px;
+            position: relative;
+        }
+
+        .open .ico {
+            animation: open 4s;
+            transform: scale(10);
+        }
+
+        .ico .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -95px;
+            margin-top: -73px;
+            z-index: 30;
+            font-size: 50px;
+            font-family: 'Pacifico', cursive;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+            pointer-events: auto;
+        }
+
+        .open .ico .title {
+            opacity: 0;
+            transition: all 0.3s ease;
+            top: -100px;
+        }
+
+        .ico:before,
+        .ico:after,
+        .ico2:before,
+        .ico2:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ico:before,
+        .ico:after,
+        .ico2:before,
+        .ico2:after {
+            display: block;
+            font-size: 20em;
+            color: #ff4081;
+            content: "\f004";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .ico2:before,
+        .ico2:after {
+            color: #e91e63;
+        }
+
+        .ico:before {
+            z-index: 3;
+        }
+
+        .ico:after {
+            animation: explode 4s infinite;
+        }
+
+        .ico2:before {
+            animation: explodeSmall 3s infinite;
+        }
+
+        .ico2:after {
+            animation: explodeSmall 2s infinite;
+        }
+
+        .endtext {
+            opacity: 0;
+            position: absolute;
+            top: -100px;
+            width: 900px;
+            left: 50%;
+            margin-left: -450px;
+            z-index: 20;
+            max-height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+        }
+
+        .endtext::-webkit-scrollbar {
+            display: none;
+        }
+
+        .open .endtext {
+            top: -320px;
+            opacity: 1;
+            animation: show 5s;
+        }
+
+        .endtext h1,
+        .endtext h2,
+        .endtext h3 {
+            text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-weight: normal;
+            position: relative;
+            z-index: 25;
+        }
+
+        .endtext h1 {
+            font-size: 50px;
+        }
+
+        .endtext h2 {
+            font-size: 20px;
+        }
+
+        .endtext h3 {
+            font-size: 30px;
+        }
+
+        @keyframes explode {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        @keyframes explodeSmall {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes open {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(10);
+            }
+        }
+
+        @keyframes show {
+            from {
+                opacity: 0;
+                top: -500px;
+            }
+            to {
+                opacity: 1;
+                top: -320px;
+            }
+        }
+
+        .bg_heart {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            top: -50%;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -m-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            pointer-events: none;
+        }
+
+        .heart:before {
+            position: absolute;
+            top: -50%;
+            left: 0;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 100%;
+            pointer-events: none;
+        }
+
+        .heart:after {
+            position: absolute;
+            top: 0;
+            right: -50%;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 100%;
+            pointer-events: none;
+        }
+
+        @-webkit-keyframes love {
+            0% {
+                top: 110%
+            }
+        }
+
+        @-moz-keyframes love {
+            0% {
+                top: 110%
+            }
+        }
+
+        @-ms-keyframes love {
+            0% {
+                top: 110%
+            }
+        }
+
+        @keyframes love {
+            0% {
+                top: 110%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page 1 - Main Page -->
+    <div id="page1" class="page">
+        <div class="container">
+            <h1>❤️ Do you love me Sayang? ❤️</h1>
+            <div class="gif_container">
+                <img src="https://media.tenor.com/wbqDH6hm_gcAAAAi/peach-goma-peach-and-goma.gif" alt="Cute GIF">
+            </div>
+            <div class="buttons">
+                <button class="yes-button" onclick="showPage('page2')">Yes</button>
+                <button class="no-button" onclick="handleNoClick()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 - Yes Page -->
+    <div id="page2" class="page hidden">
+        <div class="container">
+            <h1 class="header_text">❤️ YIIIPEEEEEE!! ❤️</h1>
+            <div class="gif_container">
+                <img src="https://media1.tenor.com/m/Px5zH6SDe54AAAAC/peach-goma-peach-and-goma.gif">
+            </div>
+            <div class="buttons">
+                <button class="surprise-button" onclick="showPage('page3')">❤️ I have a surprise for you here ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3 - Surprise Page -->
+    <div id="page3" class="page hidden">
+        <div class="bg_heart"></div>
+        <div class="bgoverlay">
+            <div class="container">
+                <span class="ico">
+                    <span class="ico2"></span>
+                    <span class="title" onclick="openSurprise()">Click Me</span>
+                </span>
+                <div class="endtext">
+                    <h1>❤️ HAPPY 1ST MONTHSARY ❤️</h1>
+                    <h2 style="font-family: Arial;">HEHEEHEHHEE SUDAH SEBULAN  SAYAAAAANGGGGG 😘😘😘❤️❤️ I can’t believe it has already been 1 month since we started this beautiful journey together 🥰🥰🥰🥰 Rasa macam cepat betul 😳😳😳 You know what they say, time flies when you are having fun HEHEHEHEHEH 😏😏😘😘😘 I enjoyed all the time we’ve spent together since I met you 😍😍😍🥰🥰🥰 I memang tak sangka that we randomly jumpa dalam Roblox game called Hutan of all places HAHAHAHAHA. I wasn’t even looking for anyone and sayang tahukan I jarang berbual dengan orang lain but for some reason, you caught my attention right away 🙈🙈. There was something about you that made me feel safe, like I could be myself without hiding 🥰🥰🥰❤️❤️ I was busy listening to orang lain berbual but suddenly out came this perempuan dengan rambut putih hitam dia shouting “siape dewasa” HAHAHAHHAHA 😂😂😂 Siape tu eh hmmmmmm 🤔🤔 After that, sayang kidnapped I pula 😳😳 And the rest is history  😍😍😍🥰🥰🥰🥰😘😘😘😘❤️❤️❤️❤️</h2>
+                    <h2 style="font-family: Arial;">Sayang, thank you for everything 🥰🥰🥰 In just these few weeks alone, you bawa so much happiness, warmth, and meaning into my life 🥺🥺🥺🥰🥰🥰😘😘😘 Setiap moment dengan you feels sooooo special 🥺🥺🥺❤️❤️❤️, whether we're laughing over silly things or just enjoying each other's company in silence. 🥺🥺❤️❤️😘🥰🥰🥰 You made me feel seen. You made sure I wasn’t left out, even in a world made of pixels and that meant more to me than I can ever  explain ❤️🥰🥰🥰❤️❤️🥰 That’s when I knew I telah jatuh cinta dengan you EHHHHHHH 🙈🙈🙈 Since then, every day with you has felt like discovering a new favourite part of the same beautiful song❤️❤️🥰🥰❤️🥰❤️❤️🥰 </h2>
+                    <h2 style="font-family: Arial;">Even though we’re far apart, I feel closer to you than ever 🥰🥰🥰🥰 The way you speak, the way you care, and your cute little english HEHEHEHE, it all makes my heart smile ❤️🥰🥰🥰😍😍😍😍❤️🥰 Thank you for showing me love in such a genuine and unexpected way. Thank you for being patient, kind and for letting me see the most vulnerable parts of you. It really means a lot to me 😍😍🥰🥰🥰🥰❤️❤️❤️ I’m so grateful to have you in my life and I will never stop loving you 🥰🥰🥰🥰🥰 One month down, and I already can’t wait for all the months and memories to come YEEEYYYYY 🥰🥰🥰🥰🥰❤️❤️😍😍😍❤️🥰 Here’s to us — our little love story that started in a game, but means so much more than that ❤️❤️❤️🥰❤️❤️❤️🥰❤️❤️🥰</h2>
+                    <h3>~ Your Lovely Ayam, Syafiq</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Special initialization for surprise page
+            if (pageId === 'page3') {
+                initHearts();
+            }
+        }
+
+        // No button logic from page1
+        const messages = [
+            "Are you sure?",
+            "Really sure??",
+            "Are you positive?",
+            "Sayanggg please...",
+            "Just think about it!",
+            "If you say no, I will be really sad...",
+            "I will be very sad...",
+            "I will be very very very sad...",
+            "Ok fine, I will stop asking...",
+            "Just kidding, say yes please! ❤️"
+        ];
+
+        let messageIndex = 0;
+
+        function handleNoClick() {
+            const noButton = document.querySelector('.no-button');
+            const yesButton = document.querySelector('.yes-button');
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = `${currentSize * 1.5}px`;
+        }
+
+        // Surprise page logic
+        function openSurprise() {
+            document.querySelector('#page3 .container').classList.add('open');
+        }
+
+        // Heart animation for surprise page
+        function initHearts() {
+            var love = setInterval(function () {
+                var r_num = Math.floor(Math.random() * 40) + 1;
+                var r_size = Math.floor(Math.random() * 65) + 10;
+                var r_left = Math.floor(Math.random() * 100) + 1;
+                var r_bg = Math.floor(Math.random() * 25) + 100;
+                var r_time = Math.floor(Math.random() * 5) + 5;
+
+                $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:love " + r_time + "s ease;-moz-animation:love " + r_time + "s ease;-ms-animation:love " + r_time + "s ease;animation:love " + r_time + "s ease'></div>");
+
+                $('.bg_heart').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:love " + (r_time + 5) + "s ease;-moz-animation:love " + (r_time + 5) + "s ease;-ms-animation:love " + (r_time + 5) + "s ease;animation:love " + (r_time + 5) + "s ease'></div>");
+
+                $('.heart').each(function () {
+                    var top = $(this).css("top").replace(/[^-\d\.]/g, '');
+                    var width = $(this).css("width").replace(/[^-\d\.]/g, '');
+                    if (top <= -100 || width >= 150) {
+                        $(this).detach();
+                    }
+                });
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>
