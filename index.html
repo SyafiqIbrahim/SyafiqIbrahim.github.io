@@ -1,305 +1,311 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 2nd Monthsary</title>
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nanum+Pen+Script" rel="stylesheet">
-  <style>
-    h1 {
-      font-family: "Indie Flower";
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2nd Monthsary</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nanum+Pen+Script" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: "Indie Flower";
+        }
 
-    p {
-      text-indent: 30px;
-      margin: 10px 0;
-    }
+        p {
+            text-indent: 30px;
+        }
 
-    h1 {
-      font-weight: 200;
-    }
+        h1 {
+            font-weight: 200;
+        }
 
-    body {
-      margin: 0px;
-      padding: 0;
-    }
+        body {
+            margin: 0px;
+        }
 
-    .container {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      overflow: hidden;
-      background-color: #fce4ec;
-    }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #fce4ec;
+        }
 
-    .heart {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      text-align: center;
-      transform: translate(-50%, -50%);
-      transiton: transform 2s;
-      z-index: 1;
-    }
+        .heart {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            transiton: transform 2s;
+            z-index: 1;
+        }
 
-    .heart > img {
-      width: 50px;
-      height: auto;
-    }
+        .heart>img {
+            width: 50px;
+            height: auto;
+        }
 
-    .message {
-      padding: 20px;
-      font-family: "Nanum Pen Script";
-      background-color: #eee;
-      width: 80%;
-      max-width: 400px;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      overflow: hidden;
-      animation-name: openmsg;
-      animation-duration: 2s;
-      animation-timing-function: linear;
-      animation-play-state: paused;
-      animation-fill-mode: forwards;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-      border-radius: 5px;
-      max-height: 80vh;
-    }
+        .message {
+            padding: 20px;
+            font-family: "Nanum Pen Script";
+            background-color: #eee;
+            width: 300px;
+            height: 75%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            overflow: hidden;
+            animation-name: openmsg;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: paused;
+            animation-fill-mode: forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            border-radius: 5px;
+        }
 
-    .heart > img:hover {
-      animation-name: beat;
-      animation-duration: 2s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-play-state: running;
-    }
+        .heart>img:hover {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
 
-    #messageState {
-    }
+        #messageState {}
 
-    @keyframes beat {
-      0% {
-        width: 50px;
-      }
-      25% {
-        width: 58px;
-      }
-      30% {
-        width: 50px;
-      }
-      50% {
-        width: 45px;
-      }
-      60% {
-        width: 50px;
-      }
-      75% {
-        width: 58px;
-      }
-      100% {
-        width: 50px;
-      }
-    }
+        @keyframes beat {
+            0% {
+                width: 50px;
+            }
 
-    @keyframes openmsg {
-      0% {
-        height: 0px;
-        padding: 0px 20px;
-      }
-      100% {
-        height: auto;
-        padding: 20px 20px;
-      }
-    }
+            25% {
+                width: 58px;
+            }
 
-    @keyframes heartMove {
-      0% {
-        top: 50%;
-      }
-      100% {
-        top: 85%;
-        transform: translate(-50%, 0);
-      }
-    }
+            30% {
+                width: 50px;
+            }
 
-    .openNor {
-      animation-direction: normal;
-      animation-play-state: running;
-    }
+            50% {
+                width: 45px;
+            }
 
-    .closeNor {
-      animation-direction: reverse;
-      animation-play-state: running;
-    }
+            60% {
+                width: 50px;
+            }
 
-    .no-anim {
-      animation: none;
-    }
+            75% {
+                width: 58px;
+            }
 
-    .closed {
-      height: 0px;
-      padding: 0px 20px;
-    }
+            100% {
+                width: 50px;
+            }
+        }
 
-    .bottom {
-      bottom: 5px;
-    }
+        @keyframes openmsg {
+            0% {
+                height: 0px;
+                padding: 0px 20px;
+            }
 
-    .openHer {
-      animation-name: heartMove;
-      animation-duration: 2s;
-      animation-timing-function: linear;
-      animation-play-state: running;
-      animation-fill-mode: forwards;
-    }
+            100% {
+                height: 75%;
+                padding: 20px 20px;
+            }
+        }
 
-    .closeHer {
-      animation-name: heartMove;
-      animation-duration: 2s;
-      animation-timing-function: linear;
-      animation-play-state: running;
-      animation-direction: reverse;
-      animation-fill-mode: forwards;
-    }
+        @keyframes heartMove {
+            0% {
+                top: 50%;
+            }
 
-    .beating > img {
-      animation-name: beat;
-      animation-duration: 2s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-play-state: running;
-    }
+            100% {
+                top: 85%;
+                transform: translate(-50%, 0);
+            }
+        }
 
-    .openedHer {
-      top: 85%;
-      transform: translate(-50%, 0);
-    }
+        .openNor {
+            animation-direction: normal;
+            animation-play-state: running;
+        }
 
-    #scrollbar1::-webkit-scrollbar {
-      width: 6px;
-    }
+        .closeNor {
+            animation-direction: reverse;
+            animation-play-state: running;
+        }
 
-    #scrollbar1::-webkit-scrollbar-track {
-      border-radius: 8px;
-      background-color: #e7e7e7;
-      border: 1px solid #cacaca;
-    }
+        .no-anim {
+            animation: none;
+        }
 
-    #scrollbar1::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-      background-color: #d55959;
-    }
-    
-    .message-content {
-      overflow-y: auto;
-      overflow-x: hidden;
-      max-height: calc(80vh - 40px);
-      padding-right: 5px;
-    }
-    
-    @media (max-width: 480px) {
-      .message {
-        width: 90%;
-        padding: 15px;
-      }
-      
-      p {
-        text-indent: 20px;
-        font-size: 16px;
-      }
-      
-      h1 {
-        font-size: 24px;
-      }
-      
-      .heart > img {
-        width: 40px;
-      }
-    }
-  </style>
+        .closed {
+            height: 0px;
+            padding: 0px 20px;
+        }
+
+        .bottom {
+            bottom: 5px;
+        }
+
+        .openHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-fill-mode: forwards;
+        }
+
+        .closeHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-direction: reverse;
+            animation-fill-mode: forwards;
+        }
+
+        .beating>img {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
+
+        .openedHer {
+            top: 85%;
+            transform: translate(-50%, 0);
+        }
+
+        #scrollbar1::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #scrollbar1::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: #e7e7e7;
+            border: 1px solid #cacaca;
+        }
+
+        #scrollbar1::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: #d55959;
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                width: 90%;
+                padding: 15px;
+            }
+
+            p {
+                text-indent: 20px;
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .heart>img {
+                width: 40px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <label>
-      <div class="heart">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
-      </div>
-      <input id="messageState" type="checkbox" style="display:none" />
-    </label>
-    <div class="message">
-      <div class="message-content">
-        <h1><b>Dear Sayang ❤️</b></h1>
-        <b>
-          <p>HAPPY 2ND MONTHSARY SAYANGGGGG ❤️❤️🥰🥰❤️😘😘🥰 HEHEHEHEHE ❤️❤️❤️</p>
+    <div class="container">
+        <label>
+            <div class="heart">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
+            </div>
+            <input id="messageState" type="checkbox" style="display:none" />
+        </label>
+        <div class="message">
+            <div id="" style="overflow-y:scroll; overflow-x:hidden; height:500px;">
+                <h1><b>Dear Sayang ❤️</b></h1>
+                <b>
+                    <p>HAPPY 2ND MONTHSARY SAYANGGGGG ❤️❤️🥰🥰❤️😘😘🥰 HEHEHEHEHE ❤️❤️❤️</p>
 
-          <p>I just want to say that every moment with you feels like a beautiful dream I never want to wake up from 🥰🥰🥰😘😘😘❤️ Your presence brightens my darkest days and your laughter is the sweetest melody I have ever heard 😍😍❤️❤️❤️ I probably don't say it enough, but I really do notice all the little things you do for me and I really appreciate it a lot 🥰🥰😘❤️😘🥰🥰❤️❤️❤️🥰🥰</p>
+                    <p>I just want to say that every moment with you feels like a beautiful dream I never want to wake
+                        up from 🥰🥰🥰😘😘😘❤️ Your presence brightens my darkest days and your laughter is the sweetest
+                        melody I have ever heard 😍😍❤️❤️❤️ I probably don’t say it enough, but I really do notice all
+                        the little things you do for me and I really appreciate it a lot 🥰🥰😘❤️😘🥰🥰❤️❤️❤️🥰🥰</p>
 
-          <p>I love you more deeply than words could ever capture and I promise to keep cherishing you, supporting you and standing by your side no matter what life brings. You are worth loving sayang 🥰🥰❤️❤️😘❤️😘🥰🥰😘 I am always proud of my sayang for giving her best at everything in life 🥰🥰🥰🥰😘😘</p>
+                    <p>I love you more deeply than words could ever capture and I promise to keep cherishing you,
+                        supporting you and standing by your side no matter what life brings. You are worth loving sayang
+                        🥰🥰❤️❤️😘❤️😘🥰🥰😘 I am always proud of my sayang for giving her best at everything in life
+                        🥰🥰🥰🥰😘😘</p>
 
-          <p>Thank you for being mine. You make my heart feel so full ❤️❤️😍❤️🥰🥰😍❤️🥰</p>
+                    <p>Thank you for being mine. You make my heart feel so full ❤️❤️😍❤️🥰🥰😍❤️🥰</p>
 
-          <i style="color: #ff0000">I LOVE YOU SOOOOOO MUCHHHH ❤️❤️😍❤️🥰🥰❤️😘😘🥰🥰😍❤️🥰</i>
-          <br>
-          <br>
-          Forever yours, Ayam
-        </b>
-      </div>
+                    <i style="color: #ff0000">I LOVE YOU SOOOOOO MUCHHHH ❤️❤️😍❤️🥰🥰❤️😘😘🥰🥰😍❤️🥰</i>
+                    <br>
+                    <br>
+                    Forever yours, Ayam
+                </b>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("#messageState").on("change", function(x) {
-        $(".message").removeClass("openNor").removeClass("closeNor");
-        if ($("#messageState").is(":checked")) {
-          $(".message")
-            .removeClass("closed")
-            .removeClass("no-anim")
-            .addClass("openNor");
-          $(".heart")
-            .removeClass("closeHer")
-            .removeClass("openedHer")
-            .addClass("openHer");
-          $(".container").stop().animate({ backgroundColor: "#f48fb1" }, 2000);
-          console.log("Abrindo");
-        } else {
-          $(".message").removeClass("no-anim").addClass("closeNor");
-          $(".heart")
-            .removeClass("openHer")
-            .removeClass("openedHer")
-            .addClass("closeHer");
-          $(".container").stop().animate({ backgroundColor: "#fce4ec" }, 2000);
-          console.log("fechando");
-        }
-      });
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#messageState").on("change", function (x) {
+                $(".message").removeClass("openNor").removeClass("closeNor");
+                if ($("#messageState").is(":checked")) {
+                    $(".message")
+                        .removeClass("closed")
+                        .removeClass("no-anim")
+                        .addClass("openNor");
+                    $(".heart")
+                        .removeClass("closeHer")
+                        .removeClass("openedHer")
+                        .addClass("openHer");
+                    $(".container").stop().animate({ backgroundColor: "#f48fb1" }, 2000);
+                    console.log("Abrindo");
+                } else {
+                    $(".message").removeClass("no-anim").addClass("closeNor");
+                    $(".heart")
+                        .removeClass("openHer")
+                        .removeClass("openedHer")
+                        .addClass("closeHer");
+                    $(".container").stop().animate({ backgroundColor: "#fce4ec" }, 2000);
+                    console.log("fechando");
+                }
+            });
 
-      $(".message").on(
-        "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-        function(e) {
-          console.log("Animation End");
-          if ($(".message").hasClass("closeNor")) $(".message").addClass("closed");
-          $(".message")
-            .removeClass("openNor")
-            .removeClass("closeNor")
-            .addClass("no-anim");
-        }
-      );
+            $(".message").on(
+                "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+                function (e) {
+                    console.log("Animation End");
+                    if ($(".message").hasClass("closeNor")) $(".message").addClass("closed");
+                    $(".message")
+                        .removeClass("openNor")
+                        .removeClass("closeNor")
+                        .addClass("no-anim");
+                }
+            );
 
-      $(".heart").on(
-        "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-        function(e) {
-          console.log("Animation End");
-          if (!$(".heart").hasClass("closeHer"))
-            $(".heart").addClass("openedHer").addClass("beating");
-          else $(".heart").addClass("no-anim").removeClass("beating");
-          $(".heart").removeClass("openHer").removeClass("closeHer");
-        }
-      );
-    });
-  </script>
+            $(".heart").on(
+                "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+                function (e) {
+                    console.log("Animation End");
+                    if (!$(".heart").hasClass("closeHer"))
+                        $(".heart").addClass("openedHer").addClass("beating");
+                    else $(".heart").addClass("no-anim").removeClass("beating");
+                    $(".heart").removeClass("openHer").removeClass("closeHer");
+                }
+            );
+        });
+    </script>
 </body>
+
 </html>
