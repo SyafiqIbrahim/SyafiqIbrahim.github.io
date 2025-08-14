@@ -1,311 +1,172 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 2nd Monthsary</title>
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nanum+Pen+Script" rel="stylesheet">
-    <style>
-        h1 {
-            font-family: "Indie Flower";
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 0;
+      background: #fdf2f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-        p {
-            text-indent: 30px;
-        }
+    .reveal-container {
+      text-align: center;
+    }
 
-        h1 {
-            font-weight: 200;
-        }
+    #reveal-button {
+      background: #d63384;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-        body {
-            margin: 0px;
-        }
+    #reveal-button:hover {
+      background: #e85d9e;
+    }
 
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #fce4ec;
-        }
+    .letter-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
 
-        .heart {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            text-align: center;
-            transform: translate(-50%, -50%);
-            transiton: transform 2s;
-            z-index: 1;
-        }
+    .header h1 {
+      font-size: 1.5rem;
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .heart>img {
-            width: 50px;
-            height: auto;
-        }
+    .content p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
 
-        .message {
-            padding: 20px;
-            font-family: "Nanum Pen Script";
-            background-color: #eee;
-            width: 300px;
-            height: 75%;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            overflow: hidden;
-            animation-name: openmsg;
-            animation-duration: 2s;
-            animation-timing-function: linear;
-            animation-play-state: paused;
-            animation-fill-mode: forwards;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            border-radius: 5px;
-        }
+    .content .closing {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #d63384;
+    }
 
-        .heart>img:hover {
-            animation-name: beat;
-            animation-duration: 2s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-play-state: running;
-        }
+    .signature {
+      text-align: right;
+      font-size: 1rem;
+      margin-top: 20px;
+      color: #555;
+    }
 
-        #messageState {}
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-        @keyframes beat {
-            0% {
-                width: 50px;
-            }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff6b81;
+      clip-path: polygon(50% 0%, 61% 12%, 73% 0%, 100% 25%, 50% 100%, 0 25%, 27% 0%, 39% 12%);
+      animation: fall 4s linear infinite;
+    }
 
-            25% {
-                width: 58px;
-            }
-
-            30% {
-                width: 50px;
-            }
-
-            50% {
-                width: 45px;
-            }
-
-            60% {
-                width: 50px;
-            }
-
-            75% {
-                width: 58px;
-            }
-
-            100% {
-                width: 50px;
-            }
-        }
-
-        @keyframes openmsg {
-            0% {
-                height: 0px;
-                padding: 0px 20px;
-            }
-
-            100% {
-                height: 75%;
-                padding: 20px 20px;
-            }
-        }
-
-        @keyframes heartMove {
-            0% {
-                top: 50%;
-            }
-
-            100% {
-                top: 85%;
-                transform: translate(-50%, 0);
-            }
-        }
-
-        .openNor {
-            animation-direction: normal;
-            animation-play-state: running;
-        }
-
-        .closeNor {
-            animation-direction: reverse;
-            animation-play-state: running;
-        }
-
-        .no-anim {
-            animation: none;
-        }
-
-        .closed {
-            height: 0px;
-            padding: 0px 20px;
-        }
-
-        .bottom {
-            bottom: 5px;
-        }
-
-        .openHer {
-            animation-name: heartMove;
-            animation-duration: 2s;
-            animation-timing-function: linear;
-            animation-play-state: running;
-            animation-fill-mode: forwards;
-        }
-
-        .closeHer {
-            animation-name: heartMove;
-            animation-duration: 2s;
-            animation-timing-function: linear;
-            animation-play-state: running;
-            animation-direction: reverse;
-            animation-fill-mode: forwards;
-        }
-
-        .beating>img {
-            animation-name: beat;
-            animation-duration: 2s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-play-state: running;
-        }
-
-        .openedHer {
-            top: 85%;
-            transform: translate(-50%, 0);
-        }
-
-        #scrollbar1::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        #scrollbar1::-webkit-scrollbar-track {
-            border-radius: 8px;
-            background-color: #e7e7e7;
-            border: 1px solid #cacaca;
-        }
-
-        #scrollbar1::-webkit-scrollbar-thumb {
-            border-radius: 8px;
-            background-color: #d55959;
-        }
-
-        @media (max-width: 480px) {
-            .message {
-                width: 90%;
-                padding: 15px;
-            }
-
-            p {
-                text-indent: 20px;
-                font-size: 16px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .heart>img {
-                width: 40px;
-            }
-        }
-    </style>
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <label>
-            <div class="heart">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
-            </div>
-            <input id="messageState" type="checkbox" style="display:none" />
-        </label>
-        <div class="message">
-            <div id="" style="overflow-y:scroll; overflow-x:hidden; height:500px;">
-                <h1><b>Dear Sayang ❤️</b></h1>
-                <b>
-                    <p>HAPPY 2ND MONTHSARY SAYANGGGGG ❤️❤️🥰🥰❤️😘😘🥰 HEHEHEHEHE ❤️❤️❤️</p>
-
-                    <p>I just want to say that every moment with you feels like a beautiful dream I never want to wake
-                        up from 🥰🥰🥰😘😘😘❤️ Your presence brightens my darkest days and your laughter is the sweetest
-                        melody I have ever heard 😍😍❤️❤️❤️ I probably don’t say it enough, but I really do notice all
-                        the little things you do for me and I really appreciate it a lot 🥰🥰😘❤️😘🥰🥰❤️❤️❤️🥰🥰</p>
-
-                    <p>I love you more deeply than words could ever capture and I promise to keep cherishing you,
-                        supporting you and standing by your side no matter what life brings. You are worth loving sayang
-                        🥰🥰❤️❤️😘❤️😘🥰🥰😘 I am always proud of my sayang for giving her best at everything in life
-                        🥰🥰🥰🥰😘😘</p>
-
-                    <p>Thank you for being mine. You make my heart feel so full ❤️❤️😍❤️🥰🥰😍❤️🥰</p>
-
-                    <i style="color: #ff0000">I LOVE YOU SOOOOOO MUCHHHH ❤️❤️😍❤️🥰🥰❤️😘😘🥰🥰😍❤️🥰</i>
-                    <br>
-                    <br>
-                    Forever yours, Ayam
-                </b>
-            </div>
-        </div>
+  <div class="reveal-container">
+    <button id="reveal-button">💌 To My Sayang 💌</button>
+    <div class="letter-container" id="letter" style="display: none;">
+      <div class="header">
+        <h1>❤️ Happy 21st Birthday ❤️</h1>
+        <h1>❤️ To the most amazing woman in my life ❤️</h1>
+      </div>
+      <div class="content">
+        <p>
+            Today is a day that I want to celebrate you in every possible way, because you are truly one of a kind and the world is so much better because you are in it. Your presence, your smile, the way you carry yourself, everything about you makes life brighter and I am incredibly grateful to have you in my life.
+        </p>
+        <p>
+            As I sit here, trying to find the right words to express what is in my heart, I realise that no message or words could ever fully capture just how much you mean to me. I want you to know that from the very first moment I met you, I knew something special was unfolding. Your kindness, your laughter, it all drew me in like a magnet. I have come to love every single thing about you, even the parts you might not always notice or appreciate about yourself.
+        </p>
+        <p>
+            On this special day, I hope you feel all the love and appreciation that you truly deserve. You are more than enough. You are never hard to love . You are everything and there is no gift in the world that could ever measure up to the joy and love I feel simply knowing you, being with you and sharing life with you.
+        </p>
+        <p>
+            I want to make one promise to you, I will always love you. No matter what, no matter how much time passes, no matter where life takes us. My love for you is not temporary. I love you yesterday, I love you today, I love you tomorrow, I love you forever.
+        </p>
+        <p>
+           Happy Birthday sayanggg! Thank you for being you and thank you for letting me be a part of your life. You mean the world to me and I am so incredibly lucky to call you mine. 
+        </p>
+        <p class="closing">
+          ❤️ I love you so much, now and always.❤️ 
+        </p>
+        <p class="signature">Yours forever, <br>Syafiq</p>
+      </div>
     </div>
+  </div>
+  <div id="hearts-container"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealButton = document.getElementById('reveal-button');
+      const letter = document.getElementById('letter');
+      const heartsContainer = document.getElementById('hearts-container');
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#messageState").on("change", function (x) {
-                $(".message").removeClass("openNor").removeClass("closeNor");
-                if ($("#messageState").is(":checked")) {
-                    $(".message")
-                        .removeClass("closed")
-                        .removeClass("no-anim")
-                        .addClass("openNor");
-                    $(".heart")
-                        .removeClass("closeHer")
-                        .removeClass("openedHer")
-                        .addClass("openHer");
-                    $(".container").stop().animate({ backgroundColor: "#f48fb1" }, 2000);
-                    console.log("Abrindo");
-                } else {
-                    $(".message").removeClass("no-anim").addClass("closeNor");
-                    $(".heart")
-                        .removeClass("openHer")
-                        .removeClass("openedHer")
-                        .addClass("closeHer");
-                    $(".container").stop().animate({ backgroundColor: "#fce4ec" }, 2000);
-                    console.log("fechando");
-                }
-            });
+      // Function to create falling hearts
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDuration = `${2 + Math.random() * 3}s`; // Random fall duration
+        heartsContainer.appendChild(heart);
 
-            $(".message").on(
-                "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-                function (e) {
-                    console.log("Animation End");
-                    if ($(".message").hasClass("closeNor")) $(".message").addClass("closed");
-                    $(".message")
-                        .removeClass("openNor")
-                        .removeClass("closeNor")
-                        .addClass("no-anim");
-                }
-            );
+        // Remove heart after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
 
-            $(".heart").on(
-                "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-                function (e) {
-                    console.log("Animation End");
-                    if (!$(".heart").hasClass("closeHer"))
-                        $(".heart").addClass("openedHer").addClass("beating");
-                    else $(".heart").addClass("no-anim").removeClass("beating");
-                    $(".heart").removeClass("openHer").removeClass("closeHer");
-                }
-            );
-        });
-    </script>
+      revealButton.addEventListener('click', () => {
+        letter.style.display = 'block';
+        revealButton.style.display = 'none';
+
+        // Start falling hearts
+        setInterval(createHeart, 200);
+      });
+    });
+  </script>
 </body>
-
 </html>
